@@ -1,0 +1,31 @@
+<h1 class="text-center mt-3">DragonBall page</h1>
+<hr>
+
+<div class="container">
+  <section class="row">
+    <div class="col-12 col-sm-6">|
+      <h3>agregar:</h3>
+      <input type="text" class="form-control" placeholder="Nombre" [value]="name()" (change)="name.set(txtName.value)"
+        #txtName />
+      <input type="number" class="form-control" placeholder="Poder" [value]="power()"
+        (change)="power.set(+txtPower.value)" #txtPower />
+      <button (click)="agregarPerson()" class="btn btn-primary mt-2">Agregar</button>
+    </div>
+    <div class="col-12 col-sm-6">
+      <h3>Lista:</h3>
+      <ul class="list-group">
+        @for(character of characters(); track character.id; let idx = $index) {
+        @if(character.power > 5000) {
+        <li class="list-group-item">
+          <span>{{idx + 1}} - {{character.name}}</span>
+          <span class="badge float-end" [class.bg-danger]="character.power >9000"
+            [class.bg-primary]="character.power < 9000">
+            {{character.power}}
+          </span>
+        </li>
+        }
+        }
+      </ul>
+    </div>
+  </section>
+</div>
